@@ -1,0 +1,20 @@
+---
+version: "3"
+services:
+  db:
+    container_name: db
+    image: postgres
+    networks:
+      - selfphonics
+    environment:
+      - POSTGRES_PASSWORD=supersecretpassword
+      - POSTGRES_USER=username
+      - POSTGRES_DB=words
+    volumes:
+      - ${HOME}/selfphonics/db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+
+networks:
+  selfphonics:
